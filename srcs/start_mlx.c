@@ -10,7 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
+
 int		start_mlx(void)
 {
+	t_window	win;
+
+	win = g_data.window;
+	win.mlx = mlx_init();
+	win.win = mlx_new_window(win.mlx, win.width, win.height, "Ta soeur");
+	
+	mlx_loop(win.mlx);
 	return (1);
 }

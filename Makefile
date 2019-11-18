@@ -55,6 +55,10 @@ clean:
 fclean:		clean
 			${RM} $(NAME)
 
+ffclean:	fclean
+			cd ${DIRLIB} && ${MAKE} fclean
+			cd ${DIRMLX} && ${MAKE} fclean
+
 ext:
 			cd ${DIRLIB} && ${MAKE} re
 			cd ${DIRMLX} && ${MAKE} re
