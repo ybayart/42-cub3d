@@ -26,6 +26,6 @@ int		endofprog(void)
 		free(g_data.texture.sprite);
 	if (g_data.map != NULL)
 		free_2d((void**)g_data.map);
-	printf("[%d]\n", updstate());
+	ft_printf("[%d]\n", updstate());
 	return (0);
 }

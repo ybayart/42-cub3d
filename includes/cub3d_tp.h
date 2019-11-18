@@ -41,8 +41,8 @@ typedef struct	s_window
 
 typedef struct	s_data
 {
-	int			posx;
-	int			posy;
+	double		posx;
+	double		posy;
 	int			fd;
 	char		*pathmap;
 	char		**map;

@@ -47,5 +47,6 @@ void	free_2d(void **arg);
 int		error_msg(char *context);
 int		endofprog(void);
 void	display_info(void);
+int		start_mlx(void);
 
 #endif

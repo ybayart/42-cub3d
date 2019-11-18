@@ -15,6 +15,7 @@ SRC			= 	main \
 				parse_map_matrix \
 				verif_map \
 				display_info \
+				start_mlx \
 				updstate \
 				free \
 				error_msg \
