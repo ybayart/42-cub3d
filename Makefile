@@ -37,12 +37,12 @@ RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
-			${CC} ${CFLAGS} -c -I${DIRINC} -I${DIRLIB} $< -o ${<:.c=.o}
+			${CC} -c -I${DIRINC} -I${DIRLIB} $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
-			${CC} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -lmlx -framework OpenGL -framework AppKit ${OBJS}
+			${CC} ${SAN} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -lmlx -framework OpenGL -framework AppKit ${OBJS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c

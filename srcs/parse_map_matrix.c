@@ -56,10 +56,12 @@ int		parse_map_matrix_check(char **map, int i)
 		free_2d((void**)g_data.map);
 		return (0);
 	}
-	else if (map[i][0] > '0' || map[i][0] < '2')
+	else if (map[i][0] == 'N' || map[i][0] == 'S' ||
+			map[i][0] == 'E' || map[i][0] == 'W')
 	{
-		g_data.posx = i;
-		g_data.posy = get_pos(0);
+		printf("x: %d | y: %d\n", i, get_pos(0));
+		g_data.posx = get_pos(0) + 0.5;
+		g_data.posy = i + 0.5;
 	}
 	return (1);
 }

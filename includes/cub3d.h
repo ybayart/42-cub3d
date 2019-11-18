@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <string.h>
 # include <libgen.h>
+# include <math.h>
 
 # include <stdio.h>
 

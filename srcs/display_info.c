@@ -33,5 +33,5 @@ void	display_info(void)
 	i = -1;
 	while (g_data.map[++i])
 		ft_printf(" | %s\n", g_data.map[i]);
-	ft_printf("Player pos:\n - x: %f\n - y: %f\n", g_data.posx, g_data.posy);
+	printf("Player pos:\n - x: %f\n - y: %f\n", g_data.posx, g_data.posy);
 }
