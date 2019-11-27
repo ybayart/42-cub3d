@@ -14,8 +14,6 @@
 
 int		start_mlx(void)
 {
-	void	*param;
-
 	g_data.window.mlx = mlx_init();
 	g_data.window.win = mlx_new_window(g_data.window.mlx, g_data.window.width,
 		g_data.window.height, "Cub3D");
