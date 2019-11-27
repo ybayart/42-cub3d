@@ -30,6 +30,10 @@
 # include "libft.h"
 # include "cub3d_tp.h"
 
+# define ROT 0.050
+# define MOV 0.1
+# define COL 2.5
+
 t_data	g_data;
 
 int		main(int argc, char **argv);
@@ -48,6 +52,12 @@ void	free_2d(void **arg);
 int		error_msg(char *context);
 int		endofprog(void);
 void	display_info(void);
+t_draw	init_draw(t_draw draw, int state);
+void	img_set_pixel(t_color color, t_img img, int x, int y);
+void	create_background(void);
+t_color	create_tcolor(int color);
+void	draw(void);
+int		key_hook(int key);
 int		start_mlx(void);
 
 #endif

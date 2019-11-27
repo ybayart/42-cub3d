@@ -15,6 +15,10 @@ SRC			= 	main \
 				parse_map_matrix \
 				verif_map \
 				display_info \
+				img \
+				color \
+				draw \
+				hooks \
 				start_mlx \
 				updstate \
 				free \

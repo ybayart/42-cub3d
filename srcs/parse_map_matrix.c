@@ -59,7 +59,6 @@ int		parse_map_matrix_check(char **map, int i)
 	else if (map[i][0] == 'N' || map[i][0] == 'S' ||
 			map[i][0] == 'E' || map[i][0] == 'W')
 	{
-		printf("x: %d | y: %d\n", i, get_pos(0));
 		g_data.posx = get_pos(0) + 0.5;
 		g_data.posy = i + 0.5;
 	}

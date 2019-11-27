@@ -20,6 +20,15 @@ typedef struct	s_color
 	int			b;
 }				t_color;
 
+typedef struct	s_img
+{
+	void		*ptr;
+	char		*data;
+	int			bpp;
+	int			size;
+	int			endian;
+}				t_img;
+
 typedef struct	s_texture
 {
 	char		*north;
@@ -29,6 +38,7 @@ typedef struct	s_texture
 	char		*sprite;
 	t_color		floor;
 	t_color		ceiling;
+	t_img		background;
 }				t_texture;
 
 typedef struct	s_window
@@ -38,6 +48,41 @@ typedef struct	s_window
 	int			height;
 	int			width;
 }				t_window;
+
+typedef struct	s_draw
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	int			h;
+	int			w;
+	int			x;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			color;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	double		old_dir_x;
+	double		old_plane_x;
+	double		vertical;
+
+}				t_draw;
 
 typedef struct	s_data
 {
@@ -51,6 +96,7 @@ typedef struct	s_data
 	char		iserrno;
 	t_window	window;
 	t_texture	texture;
+	t_draw		draw;
 }				t_data;
 
 #endif

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_mlx.c                                        :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 02:56:13 by ybayart           #+#    #+#             */
-/*   Updated: 2019/11/18 02:56:25 by ybayart          ###   ########.fr       */
+/*   Created: 2019/11/27 05:07:11 by ybayart           #+#    #+#             */
+/*   Updated: 2019/11/27 05:07:13 by ybayart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		start_mlx(void)
+t_color	create_tcolor(int color)
 {
-	void	*param;
+	t_color		newcolor;
 
-	g_data.window.mlx = mlx_init();
-	g_data.window.win = mlx_new_window(g_data.window.mlx, g_data.window.width,
-		g_data.window.height, "Cub3D");
-	create_background();
-	g_data.draw = init_draw(g_data.draw, 0);
-	draw();
-	mlx_hook(g_data.window.win, 2, 1L << 0, key_hook, g_data.window.mlx);
-	mlx_loop(g_data.window.mlx);
-	return (1);
+	newcolor.b = color % 1000;
+	color /= 1000;
+	newcolor.g = color % 1000;
+	color /= 1000;
+	newcolor.r = color % 1000;
+	return (newcolor);
 }
