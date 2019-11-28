@@ -30,16 +30,16 @@ int		parse_map_opts_t(char **opts, int nbopts, char texture)
 {
 	if (nbopts == 2)
 	{
-		if (texture == 'N' && g_data.texture.north == NULL)
-			g_data.texture.north = ft_strdup(opts[1]);
-		else if (texture == 'S' && g_data.texture.south == NULL)
-			g_data.texture.south = ft_strdup(opts[1]);
-		else if (texture == 'W' && g_data.texture.west == NULL)
-			g_data.texture.west = ft_strdup(opts[1]);
-		else if (texture == 'E' && g_data.texture.east == NULL)
-			g_data.texture.east = ft_strdup(opts[1]);
-		else if (texture == 'O' && g_data.texture.sprite == NULL)
-			g_data.texture.sprite = ft_strdup(opts[1]);
+		if (texture == 'N' && g_data.texture.north.path == NULL)
+			g_data.texture.north.path = ft_strdup(opts[1]);
+		else if (texture == 'S' && g_data.texture.south.path == NULL)
+			g_data.texture.south.path = ft_strdup(opts[1]);
+		else if (texture == 'W' && g_data.texture.west.path == NULL)
+			g_data.texture.west.path = ft_strdup(opts[1]);
+		else if (texture == 'E' && g_data.texture.east.path == NULL)
+			g_data.texture.east.path = ft_strdup(opts[1]);
+		else if (texture == 'O' && g_data.texture.sprite.path == NULL)
+			g_data.texture.sprite.path = ft_strdup(opts[1]);
 		else
 			return (0);
 	}

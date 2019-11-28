@@ -40,10 +40,13 @@ int		verif_map_matrix(void)
 
 int		verif_map(void)
 {
+	t_texture	tex;
+
+	tex = g_data.texture;
 	if (g_data.window.height == -1 || g_data.window.width == -1 ||
-		g_data.texture.north == NULL || g_data.texture.south == NULL ||
-		g_data.texture.west == NULL || g_data.texture.east == NULL ||
-		g_data.texture.floor.r == -1 || g_data.texture.ceiling.r == -1 ||
+		tex.north.path == NULL || tex.south.path == NULL ||
+		tex.west.path == NULL || tex.east.path == NULL ||
+		tex.floor.r == -1 || tex.ceiling.r == -1 ||
 		g_data.map == NULL || g_data.posx == -1 || g_data.posy == -1 ||
 		verif_map_matrix() == 0)
 		return (error_msg("missinfo"));

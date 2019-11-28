@@ -17,6 +17,9 @@ int		start_mlx(void)
 	g_data.window.mlx = mlx_init();
 	g_data.window.win = mlx_new_window(g_data.window.mlx, g_data.window.width,
 		g_data.window.height, "Cub3D");
+	if (open_textures() == 0)
+		return (0);
+	updstate();
 	create_background();
 	g_data.draw = init_draw(g_data.draw, 0);
 	draw();

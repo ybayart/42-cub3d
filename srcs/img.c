@@ -14,9 +14,19 @@
 
 void	img_set_pixel(t_color color, t_img img, int x, int y)
 {
-	*(img.data + (x * 4 + 0) + (img.size * y)) = (unsigned)color.r;
+	*(img.data + (x * 4 + 2) + (img.size * y)) = (unsigned)color.r;
 	*(img.data + (x * 4 + 1) + (img.size * y)) = (unsigned)color.g;
-	*(img.data + (x * 4 + 2) + (img.size * y)) = (unsigned)color.b;
+	*(img.data + (x * 4 + 0) + (img.size * y)) = (unsigned)color.b;
+}
+
+t_color	img_get_pixel(t_img img, int x, int y)
+{
+	t_color	color;
+
+	color.r = (unsigned)*(img.data + (x * 4 + 2) + (img.size * y));
+	color.g = (unsigned)*(img.data + (x * 4 + 1) + (img.size * y));
+	color.b = (unsigned)*(img.data + (x * 4 + 0) + (img.size * y));
+	return (color);
 }
 
 void	create_background(void)
@@ -40,4 +50,22 @@ void	create_background(void)
 				img_set_pixel(g_data.texture.floor, img, x, y);
 	}
 	g_data.texture.background = img;
+}
+
+t_img	create_hud(t_img img)
+{
+	int		x;
+	int		y;
+	t_color	color;
+
+	color.r = 255;
+	color.g = 0;
+	color.b = 0;
+	x = g_data.window.width / 2 - (g_data.window.width / 50) - 1;
+	y = g_data.window.height / 2 - (g_data.window.height / 50) - 1;
+	while (++x < g_data.window.width / 2 + (g_data.window.width / 50))
+		img_set_pixel(color, img, x, g_data.window.height / 2);
+	while (++y < g_data.window.height / 2 + (g_data.window.height / 50))
+		img_set_pixel(color, img, g_data.window.width / 2, y);
+	return (img);
 }

@@ -1,9 +1,9 @@
 R 1080 720
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-S ./path_to_the_sprite_texture
+NO ./textures/metal.xpm
+SO ./textures/brick.xpm
+WE ./textures/grass.xpm
+EA ./textures/stone.xpm
+S ./textures/wood.xpm
 F 180,180,180
 C 47,47,47
 1 1 1 1 1 1 1 1 1 1 1 1 1 1

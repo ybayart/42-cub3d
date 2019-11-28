@@ -19,6 +19,9 @@ SRC			= 	main \
 				color \
 				draw \
 				hooks \
+				hook_move \
+				hook_vision \
+				open_textures \
 				start_mlx \
 				updstate \
 				free \
@@ -46,7 +49,7 @@ CFLAGS		= -Wall -Wextra -Werror
 $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
-			${CC} ${CFLAGS} ${SAN} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -lmlx -framework OpenGL -framework AppKit ${OBJS}
+			${CC} ${SAN} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -lmlx -framework OpenGL -framework AppKit ${OBJS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c

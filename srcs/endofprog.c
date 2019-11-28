@@ -14,18 +14,18 @@
 
 int		endofprog(void)
 {
-	if (g_data.texture.north != NULL)
-		free(g_data.texture.north);
-	if (g_data.texture.south != NULL)
-		free(g_data.texture.south);
-	if (g_data.texture.west != NULL)
-		free(g_data.texture.west);
-	if (g_data.texture.east != NULL)
-		free(g_data.texture.east);
-	if (g_data.texture.sprite != NULL)
-		free(g_data.texture.sprite);
+	if (g_data.texture.north.path != NULL)
+		free(g_data.texture.north.path);
+	if (g_data.texture.south.path != NULL)
+		free(g_data.texture.south.path);
+	if (g_data.texture.west.path != NULL)
+		free(g_data.texture.west.path);
+	if (g_data.texture.east.path != NULL)
+		free(g_data.texture.east.path);
+	if (g_data.texture.sprite.path != NULL)
+		free(g_data.texture.sprite.path);
 	if (g_data.map != NULL)
 		free_2d((void**)g_data.map);
-	ft_printf("[%d]\n", updstate());
-	return (0);
+	ft_printf("End at state %d\n", updstate());
+	exit(0);
 }

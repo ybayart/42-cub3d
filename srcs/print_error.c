@@ -22,5 +22,6 @@ int		print_error(void)
 		ft_putstr_fd(strerror(errno), 1);
 	}
 	ft_putchar_fd('\n', 1);
+	endofprog();
 	return (1);
 }

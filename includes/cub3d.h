@@ -54,10 +54,17 @@ int		endofprog(void);
 void	display_info(void);
 t_draw	init_draw(t_draw draw, int state);
 void	img_set_pixel(t_color color, t_img img, int x, int y);
+t_color	img_get_pixel(t_img img, int x, int y);
 void	create_background(void);
+t_img	create_hud(t_img img);
 t_color	create_tcolor(int color);
+int		open_textures(void);
 void	draw(void);
 int		key_hook(int key);
+void	hook_move(int key);
+void	hook_translate(int key);
+void	hook_rotate(int key);
+void	hook_vertical(int key);
 int		start_mlx(void);
 
 #endif

@@ -19,11 +19,11 @@ void	display_info(void)
 
 	ft_printf("Dimensions: %dx%d\n", g_data.window.width, g_data.window.height);
 	ft_printf("Textures:\n");
-	ft_printf(" - north:  %s\n", g_data.texture.north);
-	ft_printf(" - south:  %s\n", g_data.texture.south);
-	ft_printf(" - west:   %s\n", g_data.texture.west);
-	ft_printf(" - east:   %s\n", g_data.texture.east);
-	ft_printf(" - sprite: %s\n", g_data.texture.sprite);
+	ft_printf(" - north:  %s\n", g_data.texture.north.path);
+	ft_printf(" - south:  %s\n", g_data.texture.south.path);
+	ft_printf(" - west:   %s\n", g_data.texture.west.path);
+	ft_printf(" - east:   %s\n", g_data.texture.east.path);
+	ft_printf(" - sprite: %s\n", g_data.texture.sprite.path);
 	ft_printf("Colors:\n");
 	color = g_data.texture.floor;
 	ft_printf(" - floor:   %-3d - %-3d - %-3d\n", color.r, color.g, color.b);

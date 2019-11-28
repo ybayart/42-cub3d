@@ -32,5 +32,6 @@ int		main(int argc, char **argv)
 	updstate();
 	if (start_mlx() == 0)
 		return (print_error());
+	updstate();
 	return (endofprog());
 }

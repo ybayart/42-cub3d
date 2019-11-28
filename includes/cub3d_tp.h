@@ -29,13 +29,21 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
+typedef struct	s_xpm
+{
+	char		*path;
+	t_img		img;
+	int			height;
+	int			width;
+}				t_xpm;
+
 typedef struct	s_texture
 {
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-	char		*sprite;
+	t_xpm		north;
+	t_xpm		south;
+	t_xpm		west;
+	t_xpm		east;
+	t_xpm		sprite;
 	t_color		floor;
 	t_color		ceiling;
 	t_img		background;
@@ -74,13 +82,17 @@ typedef struct	s_draw
 	int			step_y;
 	int			hit;
 	int			side;
-	int			color;
+	t_color		color;
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
 	double		old_dir_x;
 	double		old_plane_x;
+	double		wall_x;
+	int			tex_x;
+	int			tex_y;
 	double		vertical;
+	t_xpm		xpm;
 
 }				t_draw;
 

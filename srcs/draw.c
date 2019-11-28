@@ -27,7 +27,7 @@ t_draw	init_draw(t_draw draw, int state)
 		draw.h = g_data.window.height;
 		draw.vertical = 0;
 	}
-	else if (state == 2)
+	else if (state == 1)
 	{
 		draw.camera_x = 2 * draw.x / (double)draw.w - 1;
 		draw.ray_dir_x = draw.dir_x + draw.plane_x * draw.camera_x;
@@ -47,25 +47,25 @@ t_draw	get_orient(t_draw draw)
 	{
 		draw.step_x = -1;
 		draw.side_dist_x = (draw.pos_x - draw.map_x) * draw.delta_dist_x;
-		draw.color = 0255000000;
+		draw.xpm = g_data.texture.west;
 	}
 	else
 	{
 		draw.step_x = 1;
 		draw.side_dist_x = (draw.map_x + 1.0 - draw.pos_x) * draw.delta_dist_x;
-		draw.color = 0000255000;
+		draw.xpm = g_data.texture.east;
 	}
 	if (draw.ray_dir_y < 0)
 	{
 		draw.step_y = -1;
 		draw.side_dist_y = (draw.pos_y - draw.map_y) * draw.delta_dist_y;
-		draw.color = 0255000000;
+		draw.xpm = g_data.texture.west;
 	}
 	else
 	{
 		draw.step_y = 1;
 		draw.side_dist_y = (draw.map_y + 1.0 - draw.pos_y) * draw.delta_dist_y;
-		draw.color = 0000255000;
+		draw.xpm = g_data.texture.east;
 	}
 	return (draw);
 }
@@ -91,10 +91,10 @@ t_draw	get_dist(t_draw draw)
 	}
 	if (draw.side == 0)
 		draw.perp_wall_dist = (draw.map_x - draw.pos_x + (1 - draw.step_x) / 2)
-			/ draw.ray_dir_x + fabs(draw.vertical / (252 * 6.66));
+		/ draw.ray_dir_x + fabs(draw.vertical / (g_data.window.height * 2.22));
 	else
 		draw.perp_wall_dist = (draw.map_y - draw.pos_y + (1 - draw.step_y) / 2)
-			/ draw.ray_dir_y + fabs(draw.vertical / (252 * 6.66));
+		/ draw.ray_dir_y + fabs(draw.vertical / (g_data.window.height * 2.22));
 	draw.line_height = (int)(draw.h / (draw.perp_wall_dist));
 	return (draw);
 }
@@ -107,8 +107,22 @@ t_draw	get_drawpos(t_draw draw)
 	draw.draw_end = (draw.line_height / 2 + draw.h / 2) + draw.vertical;
 	if (draw.draw_end >= draw.h)
 		draw.draw_end = draw.h - 1;
+	if (draw.side == 0 && draw.ray_dir_x < 0)
+		draw.xpm = g_data.texture.north;
+	else if (draw.side == 0)
+		draw.xpm = g_data.texture.south;
 	if (draw.side == 0)
-		draw.color = 0255255000;
+		draw.wall_x = draw.pos_y + (draw.perp_wall_dist - fabs(draw.vertical /
+			(g_data.window.height * 2.22))) * draw.ray_dir_y;
+	else
+		draw.wall_x = draw.pos_x + (draw.perp_wall_dist - fabs(draw.vertical /
+			(g_data.window.height * 2.22))) * draw.ray_dir_x;
+	draw.wall_x -= floor(draw.wall_x);
+	draw.tex_x = (int)(draw.wall_x * (double)draw.xpm.width);
+	if (draw.side == 0 && draw.ray_dir_x > 0)
+		draw.tex_x = draw.xpm.width - draw.tex_x - 1;
+	if (draw.side == 1 && draw.ray_dir_y < 0)
+		draw.tex_x = draw.xpm.width - draw.tex_x - 1;
 	return (draw);
 }
 
@@ -122,14 +136,21 @@ void	draw(void)
 	img = g_data.texture.background;
 	while (++draw.x < draw.w)
 	{
-		draw = init_draw(draw, 2);
+		draw = init_draw(draw, 1);
 		draw = get_orient(draw);
 		draw = get_dist(draw);
 		draw = get_drawpos(draw);
 		while (draw.draw_start < draw.draw_end)
-			img_set_pixel(create_tcolor(draw.color),
-				img, draw.x, draw.draw_start++);
+		{
+			draw.tex_y = ((((draw.draw_start - draw.vertical) * 256 - draw.h *
+				128 + draw.line_height * 128) * draw.xpm.height) /
+				draw.line_height) / 256;
+			draw.color = img_get_pixel(draw.xpm.img, draw.tex_x, draw.tex_y);
+			img_set_pixel(draw.color, img, draw.x, draw.draw_start++);
+		}
 	}
+	img = create_hud(img);
 	mlx_put_image_to_window(
 		g_data.window.mlx, g_data.window.win, img.ptr, 0, 0);
+	mlx_destroy_image(g_data.window.mlx, img.ptr);
 }
