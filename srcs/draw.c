@@ -74,19 +74,18 @@ t_draw	get_dist(t_draw draw)
 {
 	while (draw.hit == 0)
 	{
-		if (draw.side_dist_x < draw.side_dist_y)
+		if (draw.side_dist_x < draw.side_dist_y && (draw.side = 0) == 0)
 		{
 			draw.side_dist_x += draw.delta_dist_x;
 			draw.map_x += draw.step_x;
-			draw.side = 0;
 		}
-		else
+		else if ((draw.side = 1) == 1)
 		{
 			draw.side_dist_y += draw.delta_dist_y;
 			draw.map_y += draw.step_y;
-			draw.side = 1;
 		}
-		if (g_data.map[draw.map_x][draw.map_y] == '1')
+		if (g_data.map[draw.map_x][draw.map_y] >= '1' &&
+			g_data.map[draw.map_x][draw.map_y] <= '3')
 			draw.hit = 1;
 	}
 	if (draw.side == 0)

@@ -22,7 +22,6 @@
 
 int		key_hook(int key)
 {
-	ft_printf("key: %d\n", key);
 	if (key == 123 || key == 124)
 		hook_rotate(key);
 	else if (key == 1 || key == 13)
@@ -31,7 +30,7 @@ int		key_hook(int key)
 		hook_translate(key);
 	else if (key == 125 || key == 126)
 		hook_vertical(key);
-	else if (key == 53)
+	else if (key == 49)
 		hook_action();
 	else if (key == 53)
 		endofprog();

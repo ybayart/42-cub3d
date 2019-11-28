@@ -65,6 +65,7 @@ void	hook_move(int key);
 void	hook_translate(int key);
 void	hook_rotate(int key);
 void	hook_vertical(int key);
+void	hook_action(void);
 int		start_mlx(void);
 
 #endif
