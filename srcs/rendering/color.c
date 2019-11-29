@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 20:58:13 by ybayart           #+#    #+#             */
-/*   Updated: 2019/11/16 01:33:37 by ybayart          ###   ########.fr       */
+/*   Created: 2019/11/27 05:07:11 by ybayart           #+#    #+#             */
+/*   Updated: 2019/11/27 05:07:13 by ybayart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		print_error(void)
+t_color	create_tcolor(int color)
 {
-	ft_putstr_fd("Error\n", 1);
-	ft_putstr_fd(g_data.error, 1);
-	if (g_data.iserrno == 1)
-	{
-		ft_putstr_fd(": ", 1);
-		ft_putstr_fd(strerror(errno), 1);
-	}
-	ft_putchar_fd('\n', 1);
-	endofprog();
-	return (1);
+	t_color		newcolor;
+
+	newcolor.b = color % 1000;
+	color /= 1000;
+	newcolor.g = color % 1000;
+	color /= 1000;
+	newcolor.r = color % 1000;
+	return (newcolor);
+}
+
+t_color	create_rgbcolor(char c)
+{
+	t_color	color;
+
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
+	if (c == 'r')
+		color.r = 255;
+	else if (c == 'g')
+		color.g = 255;
+	return (color);
 }

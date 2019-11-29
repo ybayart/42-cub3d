@@ -12,10 +12,37 @@
 
 #include "cub3d.h"
 
-void	display_info(void)
+static void		print_map(void)
+{
+	int		i;
+	int		j;
+
+	ft_printf("Map:\n");
+	i = -1;
+	while (g_data.map[++i])
+	{
+		ft_printf(" | ");
+		j = -1;
+		while (g_data.map[i][++j])
+			if (g_data.map[i][j] == '0')
+				ft_printf("  ");
+			else if (g_data.map[i][j] == '1')
+				ft_printf("x ");
+			else if (g_data.map[i][j] == '2')
+				ft_printf("* ");
+			else if (g_data.map[i][j] == '3')
+				ft_printf("- ");
+			else if (g_data.map[i][j] == '4')
+				ft_printf("o ");
+			else
+				ft_printf("%c ", g_data.map[i][j]);
+		ft_printf("\n");
+	}
+}
+
+void			display_info(void)
 {
 	t_color	color;
-	int		i;
 
 	ft_printf("Dimensions: %dx%d\n", g_data.window.width, g_data.window.height);
 	ft_printf("Textures:\n");
@@ -26,12 +53,10 @@ void	display_info(void)
 	ft_printf(" - sprite: %s\n", g_data.texture.sprite.path);
 	ft_printf("Colors:\n");
 	color = g_data.texture.floor;
-	ft_printf(" - floor:   %-3d - %-3d - %-3d\n", color.r, color.g, color.b);
+	ft_printf(" - floor:   #%2x%2x%2x\n", color.r, color.g, color.b);
 	color = g_data.texture.ceiling;
-	ft_printf(" - ceiling: %-3d - %-3d - %-3d\n", color.r, color.g, color.b);
-	ft_printf("Map:\n");
-	i = -1;
-	while (g_data.map[++i])
-		ft_printf(" | %s\n", g_data.map[i]);
-	printf("Player pos:\n - x: %f\n - y: %f\n", g_data.posx, g_data.posy);
+	ft_printf(" - ceiling: #%2x%2x%2x\n", color.r, color.g, color.b);
+	print_map();
+	ft_printf("Player pos:\n - x: %3d.5\n - y: %3d.5\n",
+		(int)g_data.posx, (int)g_data.posy);
 }

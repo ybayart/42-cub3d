@@ -12,14 +12,17 @@
 
 #include "cub3d.h"
 
-void	img_set_pixel(t_color color, t_img img, int x, int y)
+void	img_set_px(t_color color, t_img img, int x, int y)
 {
-	*(img.data + (x * 4 + 2) + (img.size * y)) = (unsigned)color.r;
-	*(img.data + (x * 4 + 1) + (img.size * y)) = (unsigned)color.g;
-	*(img.data + (x * 4 + 0) + (img.size * y)) = (unsigned)color.b;
+	if (!(color.r == -104 && color.g == 0 && color.b == -120))
+	{
+		*(img.data + (x * 4 + 2) + (img.size * y)) = (unsigned)color.r;
+		*(img.data + (x * 4 + 1) + (img.size * y)) = (unsigned)color.g;
+		*(img.data + (x * 4 + 0) + (img.size * y)) = (unsigned)color.b;
+	}
 }
 
-t_color	img_get_pixel(t_img img, int x, int y)
+t_color	img_get_px(t_img img, int x, int y)
 {
 	t_color	color;
 
@@ -29,43 +32,39 @@ t_color	img_get_pixel(t_img img, int x, int y)
 	return (color);
 }
 
-void	create_background(void)
+t_img	create_background(t_img img)
 {
-	t_img		img;
 	t_window	win;
 	int			x;
 	int			y;
 
 	win = g_data.window;
-	img.ptr = mlx_new_image(win.mlx, win.width, win.height);
-	img.data = mlx_get_data_addr(img.ptr, &img.bpp, &img.size, &img.endian);
 	x = -1;
 	while (++x < win.width)
 	{
 		y = -1;
 		while (++y < win.height)
 			if (y < win.height / 2 + g_data.draw.vertical)
-				img_set_pixel(g_data.texture.ceiling, img, x, y);
+				img_set_px(g_data.texture.ceiling, img, x, y);
 			else
-				img_set_pixel(g_data.texture.floor, img, x, y);
+				img_set_px(g_data.texture.floor, img, x, y);
 	}
-	g_data.texture.background = img;
+	return (img);
 }
 
-t_img	create_hud(t_img img)
+t_img	create_hud(t_img img, t_draw draw)
 {
-	int		x;
-	int		y;
-	t_color	color;
+	img = hud_cross(img);
+	img = hud_minimap(img, draw);
+	return (img);
+}
 
-	color.r = 255;
-	color.g = 0;
-	color.b = 0;
-	x = g_data.window.width / 2 - (g_data.window.width / 50) - 1;
-	y = g_data.window.height / 2 - (g_data.window.height / 50) - 1;
-	while (++x < g_data.window.width / 2 + (g_data.window.width / 50))
-		img_set_pixel(color, img, x, g_data.window.height / 2);
-	while (++y < g_data.window.height / 2 + (g_data.window.height / 50))
-		img_set_pixel(color, img, g_data.window.width / 2, y);
+t_img	create_img(void)
+{
+	t_img	img;
+
+	img.ptr = mlx_new_image(g_data.window.mlx, g_data.window.width,
+		g_data.window.height);
+	img.data = mlx_get_data_addr(img.ptr, &img.bpp, &img.size, &img.endian);
 	return (img);
 }

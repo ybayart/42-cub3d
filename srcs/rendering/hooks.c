@@ -23,7 +23,7 @@
 int		key_hook(int key)
 {
 	if (key == 123 || key == 124)
-		hook_rotate(key);
+		hook_rotate(key, 0);
 	else if (key == 1 || key == 13)
 		hook_move(key);
 	else if (key == 0 || key == 2)
@@ -32,7 +32,7 @@ int		key_hook(int key)
 		hook_vertical(key);
 	else if (key == 49)
 		hook_action();
-	else if (key == 53)
+	else if (key == 53 || key == 38912)
 		endofprog();
 	else
 		return (1);

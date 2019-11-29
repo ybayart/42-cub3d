@@ -3,30 +3,43 @@ DIRINC		= ./includes/
 DIROBJ		= ./objs/
 DIRLIB		= ./libft/
 DIRMLX		= ./minilibx/
+DIRUTIL		= ./utils/
+DIRPARS		= ./parsing/
+DIRREND		= ./rendering/
 HEAD		= ./includes/
 
-SRC			= 	main \
-				init \
-				test_args \
+SRCUTIL		=	main \
 				print_error \
+				updstate \
+				free \
+				next_map \
+				bmp \
+				endofprog
+				
+SRCPARS		=	init \
+				test_args \
 				open_map \
+				open_textures \
 				parse_map \
 				parse_map_opts \
 				parse_map_matrix \
 				verif_map \
-				display_info \
-				img \
+				error_msg \
+				display_info
+
+SRCREND		=	img \
 				color \
 				draw \
 				hooks \
 				hook_move \
 				hook_vision \
-				open_textures \
+				hud_cross \
+				hud_minimap \
 				start_mlx \
-				updstate \
-				free \
-				error_msg \
-				endofprog
+
+SRC			=	$(addprefix ${DIRUTIL}, ${SRCUTIL}) \
+				$(addprefix ${DIRPARS}, ${SRCPARS}) \
+				$(addprefix ${DIRREND}, ${SRCREND})
 
 SRCS		= $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
@@ -37,6 +50,7 @@ OBJS		= ${SRCS:.c=.o}
 NAME		= Cub3D
 NAMELFT		= libft.a
 NAMEMLX		= libmlx.a
+NAMEBMP		= libbmp.a
 
 CC			= gcc
 RM			= rm -f
@@ -49,7 +63,7 @@ CFLAGS		= -Wall -Wextra -Werror
 $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
-			${CC} ${SAN} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -lmlx -framework OpenGL -framework AppKit ${OBJS}
+			${CC} ${SAN} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -I -L ./${NAMEBMP} -lmlx -framework OpenGL -framework AppKit ${OBJS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c

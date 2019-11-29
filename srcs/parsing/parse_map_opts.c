@@ -14,11 +14,16 @@
 
 int		parse_map_opts_r(char **opts, int nbopts)
 {
+	int		n1;
+	int		n2;
+
 	if (nbopts == 3 && g_data.window.width == -1 && g_data.window.height == -1)
 	{
-		if ((g_data.window.width = ft_str_to_int(opts[1])) == -1)
+		n1 = ft_str_to_int(opts[1]);
+		n2 = ft_str_to_int(opts[2]);
+		if ((g_data.window.width = (n1 > SCREEN_W ? SCREEN_W : n1)) == -1)
 			return (0);
-		if ((g_data.window.height = ft_str_to_int(opts[2])) == -1)
+		if ((g_data.window.height = (n2 > SCREEN_H ? SCREEN_H : n2)) == -1)
 			return (0);
 	}
 	else
@@ -89,4 +94,14 @@ int		parse_map_opts_c(char **opts, int nbopts, char pos)
 	else
 		return (0);
 	return (1);
+}
+
+int		parse_map_opts_n(char **opts, int nbopts)
+{
+	if (nbopts == 2 && g_data.next == NULL)
+	{
+		g_data.next = ft_strdup(opts[1]);
+		return (1);
+	}
+	return (0);
 }

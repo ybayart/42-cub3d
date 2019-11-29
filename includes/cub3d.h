@@ -29,10 +29,16 @@
 
 # include "libft.h"
 # include "cub3d_tp.h"
+# include "libbmp.h"
 
+# define SCREEN_W 2560
+# define SCREEN_H 1440
 # define ROT 0.050
 # define MOV 0.1
 # define COL 2.5
+# define MMP_DECA g_data.window.width / 100
+# define MMP_SIZE g_data.window.width / 10
+# define FOG 6
 
 t_data	g_data;
 
@@ -46,6 +52,7 @@ int		parse_map(void);
 int		parse_map_opts_r(char **opts, int nbopts);
 int		parse_map_opts_t(char **opts, int nbopts, char texture);
 int		parse_map_opts_c(char **opts, int nbopts, char pos);
+int		parse_map_opts_n(char **opts, int nbopts);
 int		parse_map_matrix(char *line);
 int		verif_map(void);
 void	free_2d(void **arg);
@@ -53,19 +60,25 @@ int		error_msg(char *context);
 int		endofprog(void);
 void	display_info(void);
 t_draw	init_draw(t_draw draw, int state);
-void	img_set_pixel(t_color color, t_img img, int x, int y);
-t_color	img_get_pixel(t_img img, int x, int y);
-void	create_background(void);
-t_img	create_hud(t_img img);
+t_img	create_img(void);
+void	img_set_px(t_color color, t_img img, int x, int y);
+t_color	img_get_px(t_img img, int x, int y);
+t_img	create_background(t_img img);
+t_img	create_hud(t_img img, t_draw draw);
+t_img	hud_cross(t_img img);
+t_img	hud_minimap(t_img img, t_draw draw);
 t_color	create_tcolor(int color);
+t_color	create_rgbcolor(char c);
 int		open_textures(void);
 void	draw(void);
 int		key_hook(int key);
 void	hook_move(int key);
 void	hook_translate(int key);
-void	hook_rotate(int key);
+void	hook_rotate(int key, double initrot);
 void	hook_vertical(int key);
 void	hook_action(void);
 int		start_mlx(void);
+void	next_map(void);
+int		writebmp(int w, int h, char *img);
 
 #endif

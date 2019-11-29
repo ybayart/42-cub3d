@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   test_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 05:07:11 by ybayart           #+#    #+#             */
-/*   Updated: 2019/11/27 05:07:13 by ybayart          ###   ########.fr       */
+/*   Created: 2019/11/15 20:38:58 by ybayart           #+#    #+#             */
+/*   Updated: 2019/11/16 00:20:10 by ybayart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_color	create_tcolor(int color)
+int		test_args(int argc, char **argv)
 {
-	t_color		newcolor;
-
-	newcolor.b = color % 1000;
-	color /= 1000;
-	newcolor.g = color % 1000;
-	color /= 1000;
-	newcolor.r = color % 1000;
-	return (newcolor);
+	g_data.iserrno = 0;
+	if (argc >= 2)
+	{
+		g_data.pathmap = argv[1];
+		g_data.exec = argv[0];
+		if (argc >= 3)
+			if (ft_strcmp(argv[2], "-save") == 0)
+				g_data.save = 1;
+			else
+				return (error_msg("saveopt"));
+		else
+			g_data.save = 0;
+		return (1);
+	}
+	return (error_msg("entrymap"));
 }

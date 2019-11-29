@@ -46,7 +46,6 @@ typedef struct	s_texture
 	t_xpm		sprite;
 	t_color		floor;
 	t_color		ceiling;
-	t_img		background;
 }				t_texture;
 
 typedef struct	s_window
@@ -106,6 +105,9 @@ typedef struct	s_data
 	char		save;
 	char		*error;
 	char		iserrno;
+	char		*exec;
+	char		*next;
+	t_img		img;
 	t_window	window;
 	t_texture	texture;
 	t_draw		draw;

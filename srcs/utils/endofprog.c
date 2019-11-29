@@ -24,8 +24,10 @@ int		endofprog(void)
 		free(g_data.texture.east.path);
 	if (g_data.texture.sprite.path != NULL)
 		free(g_data.texture.sprite.path);
+	if (g_data.next != NULL)
+		free(g_data.next);
 	if (g_data.map != NULL)
 		free_2d((void**)g_data.map);
 	ft_printf("End at state %d\n", updstate());
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

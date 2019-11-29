@@ -21,7 +21,7 @@ t_draw	init_draw(t_draw draw, int state)
 		draw.dir_x = -1;
 		draw.dir_y = 0;
 		draw.plane_x = 0;
-		draw.plane_y = 0.65;
+		draw.plane_y = 0.66;
 		draw.x = -1;
 		draw.w = g_data.window.width;
 		draw.h = g_data.window.height;
@@ -94,6 +94,7 @@ t_draw	get_dist(t_draw draw)
 	else
 		draw.perp_wall_dist = (draw.map_y - draw.pos_y + (1 - draw.step_y) / 2)
 		/ draw.ray_dir_y + fabs(draw.vertical / (g_data.window.height * 2.22));
+	draw.perp_wall_dist = draw.perp_wall_dist > FOG ? FOG : draw.perp_wall_dist;
 	draw.line_height = (int)(draw.h / (draw.perp_wall_dist));
 	return (draw);
 }
@@ -110,6 +111,8 @@ t_draw	get_drawpos(t_draw draw)
 		draw.xpm = g_data.texture.north;
 	else if (draw.side == 0)
 		draw.xpm = g_data.texture.south;
+	if (g_data.map[draw.map_x][draw.map_y] == '2')
+		draw.xpm = g_data.texture.sprite;
 	if (draw.side == 0)
 		draw.wall_x = draw.pos_y + (draw.perp_wall_dist - fabs(draw.vertical /
 			(g_data.window.height * 2.22))) * draw.ray_dir_y;
@@ -131,8 +134,7 @@ void	draw(void)
 	t_img	img;
 
 	draw = g_data.draw;
-	create_background();
-	img = g_data.texture.background;
+	img = create_background(g_data.img);
 	while (++draw.x < draw.w)
 	{
 		draw = init_draw(draw, 1);
@@ -140,16 +142,16 @@ void	draw(void)
 		draw = get_dist(draw);
 		draw = get_drawpos(draw);
 		while (draw.draw_start < draw.draw_end)
-		{
-			draw.tex_y = ((((draw.draw_start - draw.vertical) * 256 - draw.h *
-				128 + draw.line_height * 128) * draw.xpm.height) /
-				draw.line_height) / 256;
-			draw.color = img_get_pixel(draw.xpm.img, draw.tex_x, draw.tex_y);
-			img_set_pixel(draw.color, img, draw.x, draw.draw_start++);
-		}
+			img_set_px(draw.perp_wall_dist < FOG ? img_get_px(draw.xpm.img,
+			draw.tex_x, ((((draw.draw_start - draw.vertical) * 256 - draw.h *
+			128 + draw.line_height * 128) * draw.xpm.height) / draw.line_height)
+			/ 256) : create_rgbcolor('b'), img, draw.x, draw.draw_start++);
 	}
-	img = create_hud(img);
-	mlx_put_image_to_window(
-		g_data.window.mlx, g_data.window.win, img.ptr, 0, 0);
-	mlx_destroy_image(g_data.window.mlx, img.ptr);
+	img = create_hud(img, draw);
+	if (g_data.save == 1)
+		export_as_bmp("save.bmp", img.data, draw.w, draw.h);
+	else
+		mlx_put_image_to_window(
+			g_data.window.mlx, g_data.window.win, img.ptr, 0, 0);
+	g_data.img = img;
 }

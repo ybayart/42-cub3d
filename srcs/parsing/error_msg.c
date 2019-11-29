@@ -20,8 +20,12 @@ int		error_msg(char *context)
 		g_data.error = "Couldn't open map file";
 	else if (ft_strcmp(context, "entrymap") == 0)
 		g_data.error = "No entry for map";
+	else if (ft_strcmp(context, "saveopt") == 0)
+		g_data.error = "Save flag are incorrect";
 	else if (ft_strcmp(context, "missinfo") == 0)
 		g_data.error = "Some informations are missing into map file";
+	else if (ft_strcmp(context, "opentext") == 0)
+		g_data.error = "Couldn't open texture file";
 	else
 		g_data.error = "Unknown error";
 	return (0);
