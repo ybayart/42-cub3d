@@ -16,6 +16,7 @@ void	next_map(void)
 {
 	char	*argv[3];
 
+	ft_printf("-------------------------------------------\nNext level...\n");
 	if (g_data.next != NULL)
 	{
 		argv[0] = g_data.exec;

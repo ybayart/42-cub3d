@@ -25,8 +25,6 @@
 # include <libgen.h>
 # include <math.h>
 
-# include <stdio.h>
-
 # include "libft.h"
 # include "cub3d_tp.h"
 # include "libbmp.h"
