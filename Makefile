@@ -11,8 +11,8 @@ HEAD		= ./includes/
 SRCUTIL		=	main \
 				print_error \
 				updstate \
-				free \
 				next_map \
+				free \
 				bmp \
 				endofprog
 				
@@ -30,6 +30,7 @@ SRCPARS		=	init \
 SRCREND		=	img \
 				color \
 				draw \
+				draw_get_dist \
 				hooks \
 				hook_move \
 				hook_vision \

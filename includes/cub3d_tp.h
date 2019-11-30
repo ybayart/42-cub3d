@@ -91,6 +91,7 @@ typedef struct	s_draw
 	int			tex_x;
 	int			tex_y;
 	double		vertical;
+	char		fog;
 	t_xpm		xpm;
 
 }				t_draw;

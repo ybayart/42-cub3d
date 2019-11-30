@@ -25,6 +25,8 @@
 # include <libgen.h>
 # include <math.h>
 
+# include <stdio.h>
+
 # include "libft.h"
 # include "cub3d_tp.h"
 # include "libbmp.h"
@@ -36,7 +38,7 @@
 # define COL 2.5
 # define MMP_DECA g_data.window.width / 100
 # define MMP_SIZE g_data.window.width / 10
-# define FOG 6
+# define FOG 7
 
 t_data	g_data;
 
@@ -69,6 +71,8 @@ t_color	create_tcolor(int color);
 t_color	create_rgbcolor(char c);
 int		open_textures(void);
 void	draw(void);
+int		draw_get_dist(t_draw draw);
+t_draw	draw_get_perpdist(t_draw draw);
 int		key_hook(int key);
 void	hook_move(int key);
 void	hook_translate(int key);

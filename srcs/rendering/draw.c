@@ -84,8 +84,7 @@ t_draw	get_dist(t_draw draw)
 			draw.side_dist_y += draw.delta_dist_y;
 			draw.map_y += draw.step_y;
 		}
-		if (g_data.map[draw.map_x][draw.map_y] >= '1' &&
-			g_data.map[draw.map_x][draw.map_y] <= '3')
+		if (draw_get_dist(draw) == 1)
 			draw.hit = 1;
 	}
 	if (draw.side == 0)
@@ -94,7 +93,7 @@ t_draw	get_dist(t_draw draw)
 	else
 		draw.perp_wall_dist = (draw.map_y - draw.pos_y + (1 - draw.step_y) / 2)
 		/ draw.ray_dir_y + fabs(draw.vertical / (g_data.window.height * 2.22));
-	draw.perp_wall_dist = draw.perp_wall_dist > FOG ? FOG : draw.perp_wall_dist;
+	draw = draw_get_perpdist(draw);
 	draw.line_height = (int)(draw.h / (draw.perp_wall_dist));
 	return (draw);
 }
@@ -142,10 +141,10 @@ void	draw(void)
 		draw = get_dist(draw);
 		draw = get_drawpos(draw);
 		while (draw.draw_start < draw.draw_end)
-			img_set_px(draw.perp_wall_dist < FOG ? img_get_px(draw.xpm.img,
-			draw.tex_x, ((((draw.draw_start - draw.vertical) * 256 - draw.h *
-			128 + draw.line_height * 128) * draw.xpm.height) / draw.line_height)
-			/ 256) : create_rgbcolor('b'), img, draw.x, draw.draw_start++);
+			img_set_px(draw.fog == 0 ? img_get_px(draw.xpm.img, draw.tex_x,
+			((((draw.draw_start - draw.vertical) * 256 - draw.h * 128 +
+			draw.line_height * 128) * draw.xpm.height) / draw.line_height) /
+			256) : create_rgbcolor('b'), img, draw.x, draw.draw_start++);
 	}
 	img = create_hud(img, draw);
 	if (g_data.save == 1)

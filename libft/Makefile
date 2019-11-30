@@ -7,6 +7,7 @@ SRC			= 	ft_memset \
 				ft_memcmp \
 				ft_strlen \
 				ft_nbrlen \
+				ft_tablen \
 				ft_isalpha \
 				ft_isdigit \
 				ft_isalnum \

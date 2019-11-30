@@ -68,7 +68,8 @@ t_img		hud_minimap_calcul(t_img img, t_draw draw)
 
 	x = -6;
 	while (++x <= 5)
-		if ((px = draw.pos_x + x) >= 0 && g_data.map[(int)px] != 0)
+		if ((px = draw.pos_x + x) >= 0 &&
+			(size_t)px < ft_tablen((void**)g_data.map))
 		{
 			y = -6;
 			while (++y <= 5)
@@ -77,8 +78,9 @@ t_img		hud_minimap_calcul(t_img img, t_draw draw)
 				{
 					if (x == 0 && y == 0)
 						hub_minimap_cube(img, create_rgbcolor('g'), x, y);
-					else if (g_data.map[(int)px][(int)py] >= '1'
+					else if ((g_data.map[(int)px][(int)py] >= '1'
 							&& g_data.map[(int)px][(int)py] <= '3')
+							|| g_data.map[(int)px][(int)py] == '5')
 						hub_minimap_cube(img, create_rgbcolor('r'), x, y);
 				}
 		}

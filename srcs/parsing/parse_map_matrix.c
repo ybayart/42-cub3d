@@ -22,7 +22,7 @@ int		get_pos(int n)
 
 int		parse_map_matrix_is_ok(char c)
 {
-	if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || (c >= '0' && c <= '4'))
+	if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || (c >= '0' && c <= '6'))
 		return (1);
 	return (0);
 }
@@ -59,8 +59,13 @@ int		parse_map_matrix_check(char **map, int i)
 	else if (map[i][0] == 'N' || map[i][0] == 'S' ||
 			map[i][0] == 'E' || map[i][0] == 'W')
 	{
-		g_data.posx = get_pos(0) + 0.5;
-		g_data.posy = i + 0.5;
+		if (g_data.posx == -1 && g_data.posy == -1)
+		{
+			g_data.posx = get_pos(0) + 0.5;
+			g_data.posy = i + 0.5;
+		}
+		else
+			return (0);
 	}
 	return (1);
 }

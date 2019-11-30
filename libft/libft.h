@@ -39,6 +39,7 @@ int			ft_memcmp(const void *x1, const void *s2, size_t n);
 size_t		ft_strlen(const char *x);
 size_t		ft_nbrlen(long long n);
 size_t		ft_nbrlen_base(long long n, int base);
+size_t		ft_tablen(void **tab);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);

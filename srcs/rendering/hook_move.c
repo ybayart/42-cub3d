@@ -17,26 +17,19 @@ void	hook_move(int key)
 	t_draw	*d;
 	char	x;
 	char	y;
+	double	op;
 
 	d = &g_data.draw;
-	if (key == 13)
-	{
-		if ((x = g_data.map[(int)(d->pos_x + d->dir_x *
-			MOV * COL)][(int)d->pos_y]) == '0')
-			d->pos_x += d->dir_x * MOV;
-		if ((y = g_data.map[(int)d->pos_x][(int)(d->pos_y + d->dir_y *
-			MOV * COL)]) == '0')
-			d->pos_y += d->dir_y * MOV;
-	}
-	else
-	{
-		if ((x = g_data.map[(int)(d->pos_x - d->dir_x *
-			MOV * COL)][(int)d->pos_y]) == '0')
-			d->pos_x -= d->dir_x * MOV;
-		if ((y = g_data.map[(int)d->pos_x][(int)(d->pos_y - d->dir_y *
-			MOV * COL)]) == '0')
-			d->pos_y -= d->dir_y * MOV;
-	}
+	op = (key == 13 ? d->pos_x + d->dir_x * MOV * COL : d->pos_x - d->dir_x *
+																	MOV * COL);
+	x = g_data.map[(int)(op)][(int)d->pos_y];
+	op = (key == 13 ? d->pos_y + d->dir_y * MOV * COL : d->pos_y - d->dir_y *
+																	MOV * COL);
+	y = g_data.map[(int)d->pos_x][(int)(op)];
+	if (x == '0' || x == '5')
+		d->pos_x += (key == 13 ? 1 : -1) * (d->dir_x * MOV);
+	if (y == '0' || y == '5')
+		d->pos_y += (key == 13 ? 1 : -1) * (d->dir_y * MOV);
 	if (x == '4' || y == '4')
 		next_map();
 }
@@ -46,26 +39,19 @@ void	hook_translate(int key)
 	t_draw	*d;
 	char	x;
 	char	y;
+	double	op;
 
 	d = &g_data.draw;
-	if (key == 0)
-	{
-		if ((x = g_data.map[(int)(d->pos_x - d->dir_y *
-			MOV * COL)][(int)d->pos_y]) == '0')
-			d->pos_x -= d->dir_y * MOV;
-		if ((y = g_data.map[(int)d->pos_x][(int)(d->pos_y + d->dir_x *
-			MOV * COL)]) == '0')
-			d->pos_y += d->dir_x * MOV;
-	}
-	else
-	{
-		if ((x = g_data.map[(int)(d->pos_x + d->dir_y *
-			MOV * COL)][(int)d->pos_y]) == '0')
-			d->pos_x += d->dir_y * MOV;
-		if ((y = g_data.map[(int)d->pos_x][(int)(d->pos_y - d->dir_x *
-			MOV * COL)]) == '0')
-			d->pos_y -= d->dir_x * MOV;
-	}
+	op = (key == 0 ? d->pos_x - d->dir_y * MOV * COL : d->pos_x + d->dir_y *
+																	MOV * COL);
+	x = g_data.map[(int)(op)][(int)d->pos_y];
+	op = (key == 0 ? d->pos_y + d->dir_x * MOV * COL : d->pos_y - d->dir_x *
+																	MOV * COL);
+	y = g_data.map[(int)d->pos_x][(int)(op)];
+	if (x == '0' || x == '5')
+		d->pos_x += (key == 0 ? -1 : 1) * (d->dir_y * MOV);
+	if (y == '0' || y == '5')
+		d->pos_y += (key == 0 ? 1 : -1) * (d->dir_x * MOV);
 	if (x == '4' || y == '4')
 		next_map();
 }
