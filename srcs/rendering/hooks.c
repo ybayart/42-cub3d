@@ -32,10 +32,15 @@ int		key_hook(int key)
 		hook_vertical(key);
 	else if (key == 49)
 		hook_action();
-	else if (key == 53 || key == 38912)
+	else if (key == 53)
 		endofprog();
 	else
 		return (1);
 	draw();
 	return (1);
+}
+
+int		close_hook(int key)
+{
+	endofprog();
 }

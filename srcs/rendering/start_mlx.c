@@ -47,7 +47,7 @@ int			start_mlx(void)
 	if (g_data.save == 0)
 	{
 		mlx_hook(g_data.window.win, 2, 1L << 0, key_hook, g_data.window.mlx);
-		mlx_hook(g_data.window.win, 17, 1L << 0, key_hook, g_data.window.mlx);
+		mlx_hook(g_data.window.win, 17, 1L << 0, close_hook, g_data.window.mlx);
 		mlx_loop(g_data.window.mlx);
 	}
 	else
