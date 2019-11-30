@@ -65,7 +65,7 @@ CFLAGS		= -Wall -Wextra -Werror
 $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
-			${CC} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -I -L ./${NAMEBMP} -lmlx -framework OpenGL -framework AppKit ${OBJS}
+			${CC} ${SAN} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -I -L ./${NAMEBMP} -lmlx -framework OpenGL -framework AppKit ${OBJS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c
