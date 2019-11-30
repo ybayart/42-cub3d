@@ -74,7 +74,9 @@ int		verif_map(void)
 		tex.west.path == NULL || tex.east.path == NULL ||
 		tex.floor.r == -1 || tex.ceiling.r == -1 ||
 		g_data.map == NULL || g_data.posx == -1 || g_data.posy == -1 ||
-		verif_map_matrix() == 0)
+		g_data.life.life == -1)
 		return (error_msg("missinfo"));
+	else if (verif_map_matrix() == 0)
+		return (error_msg("parsemap"));
 	return (1);
 }

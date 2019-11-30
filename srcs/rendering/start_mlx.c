@@ -12,12 +12,12 @@
 
 #include "cub3d.h"
 
-static void	set_orient(void)
+void	set_start_orient(void)
 {
 	char	pos;
 	int		deg;
 
-	pos = g_data.map[(int)g_data.posx][(int)g_data.posy];
+	pos = g_data.orient;
 	g_data.map[(int)g_data.posx][(int)g_data.posy] = '0';
 	deg = 0;
 	if (pos == 'E')
@@ -30,7 +30,7 @@ static void	set_orient(void)
 		hook_rotate(0, (deg) * M_PI / 180.0);
 }
 
-int			start_mlx(void)
+int		start_mlx(void)
 {
 	g_data.window.mlx = mlx_init();
 	g_data.window.win = mlx_new_window(g_data.window.mlx, g_data.window.width,
@@ -39,8 +39,9 @@ int			start_mlx(void)
 		return (error_msg("opentext"));
 	updstate();
 	g_data.img = create_img();
+	g_data.orient = g_data.map[(int)g_data.posx][(int)g_data.posy];
 	g_data.draw = init_draw(g_data.draw, 0);
-	set_orient();
+	set_start_orient();
 	if (g_data.save == 1)
 		ft_printf("Saving image...\n");
 	draw();

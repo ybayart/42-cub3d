@@ -28,4 +28,8 @@ void	init_data(void)
 	g_data.error = NULL;
 	g_data.posx = -1;
 	g_data.posy = -1;
+	g_data.life.life = -1;
+	g_data.life.health = -1;
+	g_data.life.inithealth = -1;
+	g_data.life.sub = -1;
 }

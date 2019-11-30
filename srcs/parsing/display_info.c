@@ -24,16 +24,17 @@ static void		print_map(void)
 		ft_printf(" | ");
 		j = -1;
 		while (g_data.map[i][++j])
-			if (g_data.map[i][j] == '0')
-				ft_printf("  ");
-			else if (g_data.map[i][j] == '1')
-				ft_printf("x ");
-			else if (g_data.map[i][j] == '2')
-				ft_printf("* ");
-			else if (g_data.map[i][j] == '3')
-				ft_printf("- ");
-			else if (g_data.map[i][j] == '4')
-				ft_printf("o ");
+			if (g_data.map[i][j] >= '0' && g_data.map[i][j] <= '7')
+			{
+				ft_printf((g_data.map[i][j] == '0') ? "  " : "");
+				ft_printf((g_data.map[i][j] == '1') ? "x " : "");
+				ft_printf((g_data.map[i][j] == '2') ? "* " : "");
+				ft_printf((g_data.map[i][j] == '3') ? "- " : "");
+				ft_printf((g_data.map[i][j] == '4') ? "o " : "");
+				ft_printf((g_data.map[i][j] == '5') ? "= " : "");
+				ft_printf((g_data.map[i][j] == '6') ? "+ " : "");
+				ft_printf((g_data.map[i][j] == '7') ? "! " : "");
+			}
 			else
 				ft_printf("%c ", g_data.map[i][j]);
 		ft_printf("\n");
@@ -59,4 +60,9 @@ void			display_info(void)
 	print_map();
 	ft_printf("Player pos:\n - x: %3d.5\n - y: %3d.5\n",
 		(int)g_data.posx, (int)g_data.posy);
+	ft_printf("Lives:\n");
+	ft_printf(" - Life:       %d\n", g_data.life.life);
+	ft_printf(" - health:     %d%%\n", g_data.life.health);
+	ft_printf(" - InitHealth: %d%%\n", g_data.life.inithealth);
+	ft_printf(" - Damage:     %d%%\n", g_data.life.sub);
 }

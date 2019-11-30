@@ -24,7 +24,7 @@ t_img		hud_minimap_cadre(t_img img)
 	int		i;
 	t_color	color;
 
-	color = create_rgbcolor('b');
+	color = create_rgbcolor('n');
 	x = -1;
 	y = -1;
 	while (++x <= MMP_SIZE)

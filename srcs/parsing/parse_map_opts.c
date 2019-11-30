@@ -53,27 +53,6 @@ int		parse_map_opts_t(char **opts, int nbopts, char texture)
 	return (1);
 }
 
-int		set_color(char *opts, t_color *color)
-{
-	int		i;
-
-	i = 0;
-	(*color).r = 0;
-	(*color).g = 0;
-	(*color).b = 0;
-	while (ft_isdigit(opts[i]))
-		(*color).r = ((*color).r * 10) + (opts[i++] - '0');
-	if (opts[i++] != ',')
-		return (0);
-	while (ft_isdigit(opts[i]))
-		(*color).g = ((*color).g * 10) + (opts[i++] - '0');
-	if ((opts[i++] != ','))
-		return (0);
-	while (ft_isdigit(opts[i]))
-		(*color).b = ((*color).b * 10) + (opts[i++] - '0');
-	return (1);
-}
-
 int		parse_map_opts_c(char **opts, int nbopts, char pos)
 {
 	if (nbopts == 2)
@@ -101,6 +80,19 @@ int		parse_map_opts_n(char **opts, int nbopts)
 	if (nbopts == 2 && g_data.next == NULL)
 	{
 		g_data.next = ft_strdup(opts[1]);
+		return (1);
+	}
+	return (0);
+}
+
+int		parse_map_opts_l(char **opts, int nbopts)
+{
+	if (nbopts == 5 && g_data.life.life == -1)
+	{
+		g_data.life.life = ft_str_to_int(opts[1]);
+		g_data.life.health = ft_str_to_int(opts[2]);
+		g_data.life.inithealth = ft_str_to_int(opts[3]);
+		g_data.life.sub = ft_str_to_int(opts[4]);
 		return (1);
 	}
 	return (0);

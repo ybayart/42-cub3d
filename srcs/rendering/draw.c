@@ -144,7 +144,7 @@ void	draw(void)
 			img_set_px(draw.fog == 0 ? img_get_px(draw.xpm.img, draw.tex_x,
 			((((draw.draw_start - draw.vertical) * 256 - draw.h * 128 +
 			draw.line_height * 128) * draw.xpm.height) / draw.line_height) /
-			256) : create_rgbcolor('b'), img, draw.x, draw.draw_start++);
+			256) : create_rgbcolor('n'), img, draw.x, draw.draw_start++);
 	}
 	img = create_hud(img, draw);
 	if (g_data.save == 1)
@@ -152,5 +152,6 @@ void	draw(void)
 	else
 		mlx_put_image_to_window(
 			g_data.window.mlx, g_data.window.win, img.ptr, 0, 0);
+	img = hud_life(img);
 	g_data.img = img;
 }

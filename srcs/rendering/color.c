@@ -33,7 +33,32 @@ t_color	create_rgbcolor(char c)
 	color.b = 0;
 	if (c == 'r')
 		color.r = 255;
+	else if (c == 'l')
+		color.r = 204;
 	else if (c == 'g')
 		color.g = 255;
+	else if (c == 'b')
+		color.b = 255;
 	return (color);
+}
+
+int		set_color(char *opts, t_color *color)
+{
+	int		i;
+
+	i = 0;
+	(*color).r = 0;
+	(*color).g = 0;
+	(*color).b = 0;
+	while (ft_isdigit(opts[i]))
+		(*color).r = ((*color).r * 10) + (opts[i++] - '0');
+	if (opts[i++] != ',')
+		return (0);
+	while (ft_isdigit(opts[i]))
+		(*color).g = ((*color).g * 10) + (opts[i++] - '0');
+	if ((opts[i++] != ','))
+		return (0);
+	while (ft_isdigit(opts[i]))
+		(*color).b = ((*color).b * 10) + (opts[i++] - '0');
+	return (1);
 }

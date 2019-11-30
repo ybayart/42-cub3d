@@ -96,10 +96,19 @@ typedef struct	s_draw
 
 }				t_draw;
 
+typedef struct	s_life
+{
+	int			life;
+	int			health;
+	int			inithealth;
+	int			sub;
+}				t_life;
+
 typedef struct	s_data
 {
 	double		posx;
 	double		posy;
+	char		orient;
 	int			fd;
 	char		*pathmap;
 	char		**map;
@@ -112,6 +121,7 @@ typedef struct	s_data
 	t_window	window;
 	t_texture	texture;
 	t_draw		draw;
+	t_life		life;
 }				t_data;
 
 #endif

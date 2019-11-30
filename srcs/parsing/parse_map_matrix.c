@@ -22,7 +22,7 @@ int		get_pos(int n)
 
 int		parse_map_matrix_is_ok(char c)
 {
-	if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || (c >= '0' && c <= '6'))
+	if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || (c >= '0' && c <= '7'))
 		return (1);
 	return (0);
 }

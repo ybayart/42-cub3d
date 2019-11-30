@@ -56,6 +56,7 @@ t_img	create_hud(t_img img, t_draw draw)
 {
 	img = hud_cross(img);
 	img = hud_minimap(img, draw);
+	img = hud_life(img);
 	return (img);
 }
 

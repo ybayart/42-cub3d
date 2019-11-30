@@ -32,6 +32,8 @@ int		parse_map_line(char **opts, int nbopts)
 		return (parse_map_opts_c(opts, nbopts, 'C'));
 	else if (ft_strcmp(opts[0], "NE") == 0)
 		return (parse_map_opts_n(opts, nbopts));
+	else if (ft_strcmp(opts[0], "LI") == 0)
+		return (parse_map_opts_l(opts, nbopts));
 	else
 		return (0);
 	return (1);

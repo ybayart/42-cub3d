@@ -25,8 +25,6 @@
 # include <libgen.h>
 # include <math.h>
 
-# include <stdio.h>
-
 # include "libft.h"
 # include "cub3d_tp.h"
 # include "libbmp.h"
@@ -53,6 +51,7 @@ int		parse_map_opts_r(char **opts, int nbopts);
 int		parse_map_opts_t(char **opts, int nbopts, char texture);
 int		parse_map_opts_c(char **opts, int nbopts, char pos);
 int		parse_map_opts_n(char **opts, int nbopts);
+int		parse_map_opts_l(char **opts, int nbopts);
 int		parse_map_matrix(char *line);
 int		verif_map(void);
 void	free_2d(void **arg);
@@ -67,20 +66,25 @@ t_img	create_background(t_img img);
 t_img	create_hud(t_img img, t_draw draw);
 t_img	hud_cross(t_img img);
 t_img	hud_minimap(t_img img, t_draw draw);
+t_img	hud_life(t_img img);
 t_color	create_tcolor(int color);
 t_color	create_rgbcolor(char c);
+int		set_color(char *opts, t_color *color);
 int		open_textures(void);
 void	draw(void);
 int		draw_get_dist(t_draw draw);
 t_draw	draw_get_perpdist(t_draw draw);
 int		key_hook(int key);
+int		close_hook(int key);
 void	hook_move(int key);
 void	hook_translate(int key);
 void	hook_rotate(int key, double initrot);
 void	hook_vertical(int key);
 void	hook_action(void);
 int		start_mlx(void);
+void	set_start_orient(void);
 void	next_map(void);
+void	sub_life(void);
 int		writebmp(int w, int h, char *img);
 
 #endif

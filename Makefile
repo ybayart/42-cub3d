@@ -36,6 +36,7 @@ SRCREND		=	img \
 				hook_vision \
 				hud_cross \
 				hud_minimap \
+				hud_life \
 				start_mlx \
 
 SRC			=	$(addprefix ${DIRUTIL}, ${SRCUTIL}) \

@@ -42,5 +42,7 @@ int		key_hook(int key)
 
 int		close_hook(int key)
 {
+	(void)key;
 	endofprog();
+	return (1);
 }

@@ -32,6 +32,8 @@ void	hook_move(int key)
 		d->pos_y += (key == 13 ? 1 : -1) * (d->dir_y * MOV);
 	if (x == '4' || y == '4')
 		next_map();
+	else if (x == '7' || y == '7')
+		sub_life();
 }
 
 void	hook_translate(int key)
@@ -54,6 +56,8 @@ void	hook_translate(int key)
 		d->pos_y += (key == 0 ? 1 : -1) * (d->dir_x * MOV);
 	if (x == '4' || y == '4')
 		next_map();
+	else if (x == '7' || y == '7')
+		sub_life();
 }
 
 void	hook_action(void)
