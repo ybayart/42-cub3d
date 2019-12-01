@@ -1,7 +1,7 @@
 R 1080 720 
-NO ./textures/bluestone.xpm
+NO ./textures/redbrick.xpm
 SO ./textures/greystone.xpm
-WE ./textures/purplestone.xpm
+WE ./textures/mossy.xpm
 EA ./textures/stone.xpm
 S ./textures/wood.xpm
 F ./textures/grass.xpm
