@@ -61,12 +61,12 @@ RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
-			${CC} ${CFLAGS} -c -I${DIRINC} -I${DIRLIB} $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -c -I${DIRINC} -I${DIRMLX} -I${DIRLIB} $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
-			${CC} ${SAN} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -I -L ./${NAMEBMP} -lmlx -framework OpenGL -framework AppKit ${OBJS}
+			${CC} ${SAN} ${CFLAGS} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} -I -L ${DIRMLX}${NAMEMLX} -I -L ${DIRLIB}${NAMELFT} -I -L ./${NAMEBMP} -framework OpenGL -framework AppKit ${OBJS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c
