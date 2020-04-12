@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <X11/X.h>
 
 void	set_start_orient(void)
 {
@@ -47,8 +48,8 @@ int		start_mlx(void)
 	draw();
 	if (g_data.save == 0)
 	{
-		mlx_hook(g_data.window.win, 2, 1L << 0, key_hook, g_data.window.mlx);
-		mlx_hook(g_data.window.win, 17, 1L << 0, close_hook, g_data.window.mlx);
+		mlx_hook(g_data.window.win, KeyPress, KeyPressMask, key_hook, g_data.window.mlx);
+		mlx_hook(g_data.window.win, DestroyNotify, StructureNotifyMask, close_hook, g_data.window.mlx);
 		mlx_loop(g_data.window.mlx);
 	}
 	else
