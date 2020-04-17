@@ -48,6 +48,9 @@ int		start_mlx(void)
 	draw();
 	if (g_data.save == 0)
 	{
+		int	x, y;
+		mlx_get_screen_size(g_data.window.mlx, &x, &y);
+		printf("size: %dx%d\n", x, y);
 		mlx_hook(g_data.window.win, KeyPress, KeyPressMask, key_hook, g_data.window.mlx);
 		mlx_hook(g_data.window.win, DestroyNotify, StructureNotifyMask, close_hook, g_data.window.mlx);
 		mlx_loop(g_data.window.mlx);

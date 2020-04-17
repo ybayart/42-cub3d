@@ -47,7 +47,7 @@ SRC			=	$(addprefix ${DIRUTIL}, ${SRCUTIL}) \
 
 SRCS		= $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
-SAN 		= -fsanitize=address
+SAN 		= -fsanitize=leak
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -68,7 +68,7 @@ $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
 			cd ${DIRBMP} && ${MAKE}
-			${CC} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} ${OBJS} ${DIRMLX}${NAMEMLX} ${DIRLIB}${NAMELFT} ${DIRBMP}${NAMEBMP} ${CFLAGS}
+			${CC} ${SAN} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} ${OBJS} ${DIRMLX}${NAMEMLX} ${DIRLIB}${NAMELFT} ${DIRBMP}${NAMEBMP} ${CFLAGS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c
