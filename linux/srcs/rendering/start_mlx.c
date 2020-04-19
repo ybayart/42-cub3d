@@ -31,6 +31,16 @@ void	set_start_orient(void)
 		hook_rotate(0, (deg) * M_PI / 180.0);
 }
 
+int		mouse_hook(int x, int y)
+{
+	if (x != g_data.window.width / 2 || y != g_data.window.height / 2)
+	{
+		printf("%.3d %.3d\n", x - g_data.window.width / 2, y - g_data.window.height / 2);
+		sleep(0.5);
+		mlx_mouse_move(g_data.window.mlx, g_data.window.win, g_data.window.width / 2, g_data.window.height / 2);
+	}
+}
+
 int		start_mlx(void)
 {
 	g_data.window.mlx = mlx_init();
@@ -51,8 +61,10 @@ int		start_mlx(void)
 		int	x, y;
 		mlx_get_screen_size(g_data.window.mlx, &x, &y);
 		printf("size: %dx%d\n", x, y);
+		mlx_mouse_hide(g_data.window.mlx, g_data.window.win);
 		mlx_hook(g_data.window.win, KeyPress, KeyPressMask, key_hook, g_data.window.mlx);
 		mlx_hook(g_data.window.win, DestroyNotify, StructureNotifyMask, close_hook, g_data.window.mlx);
+		mlx_hook(g_data.window.win, MotionNotify, PointerMotionMask, mouse_hook, g_data.window.mlx);
 		mlx_loop(g_data.window.mlx);
 	}
 	else

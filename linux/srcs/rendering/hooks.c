@@ -32,6 +32,8 @@ int		key_hook(int key)
 		hook_action();
 	else if (key == ESC)
 		endofprog();
+	else if (key == 65289)
+		mlx_mouse_show(g_data.window.mlx, g_data.window.win);
 	else
 		return (1);
 	draw();
