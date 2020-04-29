@@ -61,10 +61,10 @@ int		start_mlx(void)
 		int	x, y;
 		mlx_get_screen_size(g_data.window.mlx, &x, &y);
 		printf("size: %dx%d\n", x, y);
-		mlx_mouse_hide(g_data.window.mlx, g_data.window.win);
+//		mlx_mouse_hide(g_data.window.mlx, g_data.window.win);
 		mlx_hook(g_data.window.win, KeyPress, KeyPressMask, key_hook, g_data.window.mlx);
 		mlx_hook(g_data.window.win, DestroyNotify, StructureNotifyMask, close_hook, g_data.window.mlx);
-		mlx_hook(g_data.window.win, MotionNotify, PointerMotionMask, mouse_hook, g_data.window.mlx);
+//		mlx_hook(g_data.window.win, MotionNotify, PointerMotionMask, mouse_hook, g_data.window.mlx);
 		mlx_loop(g_data.window.mlx);
 	}
 	else

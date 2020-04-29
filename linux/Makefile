@@ -68,7 +68,7 @@ $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
 			cd ${DIRBMP} && ${MAKE}
-			${CC} ${SAN} -o ${NAME} -I ${DIRINC} -I ${DIRMLX} ${OBJS} ${DIRMLX}${NAMEMLX} ${DIRLIB}${NAMELFT} ${DIRBMP}${NAMEBMP} ${CFLAGS}
+			${CC} -o ${NAME} -I ${DIRINC} -I${DIRMLX} ${OBJS} ${DIRLIB}${NAMELFT} ${DIRMLX}${NAMEMLX} ${DIRBMP}${NAMEBMP} ${CFLAGS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c
