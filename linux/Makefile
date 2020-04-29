@@ -59,7 +59,7 @@ NAMEBMP		= libbmp.a
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -lm -lbsd -lX11 -lXext
+CFLAGS		= -lft -lmlx -lbmp -lm -lbsd -lX11 -lXext
 
 .c.o:
 			${CC} ${CFLAGS} -c -I${DIRINC} -I${DIRMLX} -I${DIRLIB} $< -o ${<:.c=.o}
@@ -68,7 +68,7 @@ $(NAME):	${OBJS}
 			cd ${DIRLIB} && ${MAKE}
 			cd ${DIRMLX} && ${MAKE}
 			cd ${DIRBMP} && ${MAKE}
-			${CC} -o ${NAME} -I ${DIRINC} -I${DIRMLX} ${OBJS} ${DIRLIB}${NAMELFT} ${DIRMLX}${NAMEMLX} ${DIRBMP}${NAMEBMP} ${CFLAGS}
+			${CC} -o ${NAME} -I ${DIRINC} -I${DIRMLX} ${OBJS} -L${DIRLIB} -L${DIRMLX} -L${DIRBMP} ${CFLAGS}
 
 main:		$(NAME)
 			${CC} ${NAME} main.c
