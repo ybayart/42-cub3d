@@ -6,7 +6,7 @@
 /*   By: ybayart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 02:56:13 by ybayart           #+#    #+#             */
-/*   Updated: 2019/11/18 02:56:25 by ybayart          ###   ########.fr       */
+/*   Updated: 2020/05/04 15:31:28 by hexa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int		mouse_hook(int x, int y)
 {
 	if (x != g_data.window.width / 2 || y != g_data.window.height / 2)
 	{
-		printf("%.3d %.3d\n", x - g_data.window.width / 2, y - g_data.window.height / 2);
+		printf("%.3d %.3d\n", x - g_data.window.width / 2,
+								y - g_data.window.height / 2);
 		sleep(0.5);
-		mlx_mouse_move(g_data.window.mlx, g_data.window.win, g_data.window.width / 2, g_data.window.height / 2);
+		mlx_mouse_move(g_data.window.mlx, g_data.window.win,
+			g_data.window.width / 2, g_data.window.height / 2);
 	}
 }
 
@@ -58,16 +60,23 @@ int		start_mlx(void)
 	draw();
 	if (g_data.save == 0)
 	{
-		int	x, y;
-		mlx_get_screen_size(g_data.window.mlx, &x, &y);
-		printf("size: %dx%d\n", x, y);
-//		mlx_mouse_hide(g_data.window.mlx, g_data.window.win);
-		mlx_hook(g_data.window.win, KeyPress, KeyPressMask, key_hook, g_data.window.mlx);
-		mlx_hook(g_data.window.win, DestroyNotify, StructureNotifyMask, close_hook, g_data.window.mlx);
-//		mlx_hook(g_data.window.win, MotionNotify, PointerMotionMask, mouse_hook, g_data.window.mlx);
+		mlx_hook(g_data.window.win, KeyPress, KeyPressMask, key_hook,
+														g_data.window.mlx);
+		mlx_hook(g_data.window.win, DestroyNotify, StructureNotifyMask,
+											close_hook, g_data.window.mlx);
 		mlx_loop(g_data.window.mlx);
 	}
 	else
 		ft_printf("Saved !\n");
 	return (1);
 }
+
+/*
+**		int	x, y;
+**		mlx_get_screen_size(g_data.window.mlx, &x, &y);
+**		printf("size: %dx%d\n", x, y);
+**
+**		mlx_mouse_hide(g_data.window.mlx, g_data.window.win);
+**		mlx_hook(g_data.window.win, MotionNotify, PointerMotionMask, mouse_hook,
+**							g_data.window.mlx);
+*/
